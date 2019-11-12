@@ -1,0 +1,11 @@
+{
+    "workbench.colorCustomizations": {
+        "[One Dark Pro Bold]": {
+            "editor.background": "#070505"
+        },
+        "tab.unfocusedActiveBorder": "#fff0"
+    },
+    "cSpell.words": [
+        "\",\r\n"
+    ]
+}
