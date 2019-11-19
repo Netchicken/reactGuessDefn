@@ -205,7 +205,7 @@ class GamePlay extends Component {
                 className="button btn btn-success btn-lg"
                 onClick={() => this.NewGame()}
               >
-                {"Play " + word }
+                {"Play - " + word }
               </button>
               {/* <h2 align="center">{word} </h2> */}
               <div className="row">
