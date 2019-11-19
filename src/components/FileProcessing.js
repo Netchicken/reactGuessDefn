@@ -2,7 +2,7 @@
 import dict from "../Assets/OxfordJson.json";
 
 export async function loadDictionary() {
-    return await dict; //JSON.parse(dict);
+  return await dict; //JSON.parse(dict);
 }
 
 export function RandomNumber() {
@@ -10,8 +10,13 @@ export function RandomNumber() {
   const max = dict.length;
   return min + Math.random() * (max - min);
 }
-export function CreateGamePlay() {
-  
-    
-
+//this doesn't work????
+export function shuffleAnswers(array) {
+  let temp = array.slice();
+  for (let i = temp.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [temp[i], temp[j]] = [temp[j], temp[i]];
+    console.log("shuffleanswers " + temp[i]);
+  }
+  return temp;
 }

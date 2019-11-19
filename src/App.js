@@ -1,21 +1,23 @@
 import React, { Component } from "react";
 import "./App.css";
-import GamePlay from "./components/GamePlay";
+import gamePlay from "./components/GamePlay";
+import winList from "./components/WinList";
+import loseList from "./components/LoseList";
+import appHeader from "./components/AppHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+import { Route, Switch } from "react-router-dom";
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <GamePlay></GamePlay>
-        </header>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="container-fluid">
+      <Switch>
+        <Route exact path="/" component={gamePlay} />
+        <Route component={winList} />
+        <Route component={loseList} />
+        <Route component={appHeader} />
+      </Switch>
+    </div>
+  );
 }
 
 export default App;

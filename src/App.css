@@ -1,3 +1,6 @@
+body {
+  background-color: rgb(169, 185, 124);
+}
 .App {
   /* text-align: center; */
 }
@@ -28,12 +31,12 @@
   border-radius: 18px;
   font-weight: bold;
   font-size: medium;
-  color: #282c34;
+  color: #1b1c1f;
   width: 250px;
-  padding: 15px;
-  margin-right: 25px;
+  padding: 10px;
+  /* margin-right: 35px; */
   margin-top: 5px;
-  background-color: #242222a1;
+  background-color: #f3e0e0a1;
   min-height: 100px;
   box-shadow: 3px 3px red, -1em 0 0.4em olive;
 }
@@ -42,4 +45,88 @@
   background-color: #e0d2ce;
   box-shadow: 3px 3px red, -1em 0 0.4em olive;
   transform: translateY(-7px);
+}
+
+.button {
+  width: 200px;
+  height: 45px;
+  /* font-family: "Roboto", sans-serif; */
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  /* color: #000; */
+  /* background-color: #fff; */
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.buttonSubmit {
+  width: 70%;
+  height: 60px;
+  /* font-family: "Roboto", sans-serif; */
+  font-size: 15px;
+  /* text-transform: uppercase; */
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  /* color: #000; */
+  /* background-color: #fff; */
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(240, 15, 15, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+  padding: 10px;
+  margin: 5px;
+}
+
+.buttonSubmit:hover {
+  background-color: #2e50e5;
+  box-shadow: 0px 15px 20px rgba(18, 39, 97, 0.4);
+  color: #fff;
+  transform: translateY(7px);
+}
+
+.list-group-item {
+  font-weight: bold;
+  /* font-size: 20px; */
+  letter-spacing: 2.5px;
+  color: #10330c;
+  background-color: rgb(169, 185, 124);
+  /* border: none; */
+  /* border-radius: 45px; */
+  padding: 2;
+  margin: 2;
+}
+.list-group-item:hover {
+  /* background-color: #2e50e5; */
+  /* box-shadow: 0px 15px 20px rgba(18, 39, 97, 0.4); */
+  color: #fff;
+  /* transform: translateY(7px); */
+}
+
+.cardBodyWinLose {
+  border-radius: 18px;
+  font-weight: bold;
+  font-size: medium;
+  color: #1b1c1f;
+  width: 250px;
+  padding: 10px;
+  /* margin-right: 35px; */
+  margin-top: 5px;
+  background-color: #f3e0e0a1;
+  min-height: 100px;
+  box-shadow: 3px 3px rgb(255, 251, 0), -1em 0 0.4em olive;
+}
+
+.NavbarBrand {
+  /* font-weight: bold; */
+  font-size: x-large;
+  color: rgb(217, 224, 221);
 }

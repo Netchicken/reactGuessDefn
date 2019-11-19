@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { loadDictionary } from "./FileProcessing";
+import { loadDictionary, shuffleAnswers } from "./FileProcessing";
 import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
+import WinList from "./WinList";
+import LoseList from "./LoseList";
+
 //keep this for async ideas with state
 //https://stackoverflow.com/questions/58794712/how-to-i-make-setstate-run-synchronously-in-reactjs/58795004#58795004
 
@@ -21,7 +24,9 @@ class GamePlay extends Component {
       prevAnswer: "",
       nextWord: "",
       nextAnswer: "",
-      rndAnswer: ""
+      rndAnswer: "",
+      winList: [],
+      loseList: []
     };
     this.WinLose = this.WinLose.bind(this);
   }
@@ -63,8 +68,8 @@ class GamePlay extends Component {
   }
 
   RandomNumber() {
-    const min = 0;
-    const max = 26731 - 1;
+    const min = 0 + 5; //5 is to stop out of bound errors
+    const max = 26731 - 5;
     const rnd = Math.floor(Math.random() * (max - min + 1) + min);
     const rnd2 = Math.floor(Math.random() * (max - min + 1) + min);
 
@@ -74,6 +79,8 @@ class GamePlay extends Component {
     const prevAnswer = this.state.dictionary.Entries[rnd - 1].Definition;
     const nextWord = this.state.dictionary.Entries[rnd + 1].Word;
     const nextAnswer = this.state.dictionary.Entries[rnd + 1].Definition;
+    const next2Word = this.state.dictionary.Entries[rnd + 2].Word;
+    const next2Answer = this.state.dictionary.Entries[rnd + 2].Definition;
 
     const rndWord = this.state.dictionary.Entries[rnd2].Word;
     const rndAnswer = this.state.dictionary.Entries[rnd2].Definition;
@@ -84,6 +91,7 @@ class GamePlay extends Component {
     let pq = { word: prevWord, answer: prevAnswer };
     let nq = { word: nextWord, answer: nextAnswer };
     let rq = { word: rndWord, answer: rndAnswer };
+    let n2q = { word: next2Word, answer: next2Answer }; //not used
     const AnswersPairArray = [q, pq, nq, rq];
 
     this.setState(
@@ -97,50 +105,71 @@ class GamePlay extends Component {
         nextAnswer: this.state.dictionary.Entries[rnd + 1].Definition,
         rndAnswer: this.state.dictionary.Entries[rnd2].Definition,
         answers: AnswersArray,
-        answerPair: AnswersPairArray
+        answerPair: shuffleAnswers(AnswersPairArray)
       }),
       () => {
-        this.shuffleAnswers();
-        this.shuffleAnswerPair();
+        //  console.log("answers[0] =  " + this.state.answers[0]);
+        //  this.shuffleAnswers();
+        //   this.setState({ answers: shuffleAnswers(this.state.answers) });
+        //  this.shuffleAnswerPair();
       }
     );
   }
 
-  shuffleAnswers = () => {
-    let temp = this.state.answers.slice();
-    for (let i = temp.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [temp[i], temp[j]] = [temp[j], temp[i]];
-    }
-    //  console.log("shuffle  answers Temp  " + temp);
-    this.setState({ answers: temp });
-  };
-  shuffleAnswerPair = () => {
-    let temp = this.state.answerPair.slice();
-    for (let i = temp.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [temp[i], temp[j]] = [temp[j], temp[i]];
-    }
+  // shuffleAnswers = () => {
+  //   let temp = this.state.answers.slice();
+  //   for (let i = temp.length - 1; i > 0; i--) {
+  //     let j = Math.floor(Math.random() * (i + 1));
+  //     [temp[i], temp[j]] = [temp[j], temp[i]];
+  //   }
+  //  // console.log("shuffle  answers Temp  " + temp);
+  //   this.setState({ answers: temp });
+  // };
 
-    // let q = temp[0];
-    // console.log("shuffle  single Temp  " + q.word + " " + q.answer);
-    // console.log("shuffle  answerPair Temp  " + temp);
-    // console.log("answerPair Temp  " + temp[0]);
-    this.setState({ answerPair: temp });
-  };
+  // shuffleAnswerPair = () => {
+  //   let temp = this.state.answerPair.slice();
+  //   for (let i = temp.length - 1; i > 0; i--) {
+  //     let j = Math.floor(Math.random() * (i + 1));
+  //     [temp[i], temp[j]] = [temp[j], temp[i]];
+  //   }
+
+  //   // let q = temp[0];
+  //   // console.log("shuffle  single Temp  " + q.word + " " + q.answer);
+  //   // console.log("shuffle  answerPair Temp  " + temp);
+  //   // console.log("answerPair Temp  " + temp[0]);
+  //   this.setState({ answerPair: temp });
+  // };
 
   WinLose(a) {
-    // e.preventDefault();
-
     this.setState({ answerClicked: true });
 
     if (a.answer === this.state.answer) {
-      alert("Correct");
-      console.log(a + " WinLose Win " + this.state.answer);
+      // alert("Correct");
+
+      this.setState(state => {
+        const winList = [...state.winList, state.word]; //spread it, add in word
+        return {
+          winList //send back new list
+        };
+      });
+
+      console.log(" Win " + this.state.answer);
     } else {
-      console.log(a + " Winlose lose " + this.state.answer);
-      alert("Wrong the answer to your defn is " + a.word);
+      console.log("Lose " + this.state.answer);
+
+      this.setState(state => {
+        const loseList = [...state.loseList, state.word]; //spread it, add in word
+        return {
+          loseList //send back new list
+        };
+      });
+
+      //  alert("Wrong the answer to your definition is " + this.state.answer);
     }
+
+    //   this.state.winList.map(i => console.log("winList " + i.text));
+
+    //this.NewGame();
   }
 
   render() {
@@ -161,36 +190,55 @@ class GamePlay extends Component {
       return <div>Loading ....</div>;
     } else {
       return (
-        <div className="container-fluid">
-          <div className="row">
-            <button
-              className="button btn btn-danger btn-lg"
-              onClick={() => this.NewGame()}>
-              Play
-            </button>
-          </div>
+        <div className="container-fluid  justify-content-md-center">
+          <div className="row  justify-content-md-center">
+            {/* <div className="col-md-auto">
+              <button
+                className="button btn btn-danger btn-lg"
+                onClick={() => this.NewGame()}
+              >
+                {!answerClicked ? "Play" : word}
+              </button>
+            </div> */}
+            <div className="col-md-auto">
+              <button
+                className="button btn btn-success btn-lg"
+                onClick={() => this.NewGame()}
+              >
+                {"Play " + word }
+              </button>
+              {/* <h2 align="center">{word} </h2> */}
+              <div className="row">
+                {answerPair.map((a, index) => (
+                  <div className="col col-md-3 col-sm-6" key={index}>
+                    <Card className="cardBody">
+                      <CardTitle className="conditions ">
+                        {!answerClicked ? word : a.word}
+                      </CardTitle>
+                      <CardText>{a.answer}</CardText>
 
-          <h2 align="center">{word} </h2>
-          <div className="row">
-            {answerPair.map((a, index) => (
-              <div className="col col-md-3 col-sm-6" key={index}>
-                <Card className="cardBody">
-                  <CardTitle className="conditions ">
-                    {!answerClicked ? word : a.word}
-                  </CardTitle>
-                  <CardText>{a.answer}</CardText>
-
-                  <button
-                    className="button btn btn-danger btn-sm"
-                    value={a}
-                    key={index}
-                    onClick={() => this.WinLose(a)}>
-                    {!answerClicked ? "Choose Definition" : a.word}
-                  </button>
-                  {/* <CardSubtitle> {a.word} </CardSubtitle> */}
-                </Card>
+                      <button
+                        className="buttonSubmit btn btn-primary"
+                        value={a}
+                        key={index}
+                        onClick={() => this.WinLose(a)}
+                      >
+                        {!answerClicked ? "Choose Definition" : a.word}
+                      </button>
+                      {/* <CardSubtitle> {a.word} </CardSubtitle> */}
+                    </Card>
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="row">
+                <div className="col-md-auto">
+                  <WinList winList={this.state.winList} />
+                </div>
+                <div className="col-md-auto">
+                  <LoseList loseList={this.state.loseList} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       );
