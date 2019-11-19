@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/reactGuessDefn/static/css/main.cb77e28f.chunk.css",
+    "main.js": "/reactGuessDefn/static/js/main.35ae2bc7.chunk.js",
+    "main.js.map": "/reactGuessDefn/static/js/main.35ae2bc7.chunk.js.map",
+    "runtime-main.js": "/reactGuessDefn/static/js/runtime-main.fa353b1f.js",
+    "runtime-main.js.map": "/reactGuessDefn/static/js/runtime-main.fa353b1f.js.map",
+    "static/css/2.b0bb7f2c.chunk.css": "/reactGuessDefn/static/css/2.b0bb7f2c.chunk.css",
+    "static/js/2.aee1e530.chunk.js": "/reactGuessDefn/static/js/2.aee1e530.chunk.js",
+    "static/js/2.aee1e530.chunk.js.map": "/reactGuessDefn/static/js/2.aee1e530.chunk.js.map",
+    "index.html": "/reactGuessDefn/index.html",
+    "precache-manifest.52f1d0c2f16cd8f1f158aa670f2c263a.js": "/reactGuessDefn/precache-manifest.52f1d0c2f16cd8f1f158aa670f2c263a.js",
+    "service-worker.js": "/reactGuessDefn/service-worker.js",
+    "static/css/2.b0bb7f2c.chunk.css.map": "/reactGuessDefn/static/css/2.b0bb7f2c.chunk.css.map",
+    "static/css/main.cb77e28f.chunk.css.map": "/reactGuessDefn/static/css/main.cb77e28f.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fa353b1f.js",
+    "static/css/2.b0bb7f2c.chunk.css",
+    "static/js/2.aee1e530.chunk.js",
+    "static/css/main.cb77e28f.chunk.css",
+    "static/js/main.35ae2bc7.chunk.js"
+  ]
+}
