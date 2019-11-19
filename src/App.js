@@ -5,18 +5,20 @@ import winList from "./components/WinList";
 import loseList from "./components/LoseList";
 import appHeader from "./components/AppHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Switch } from "react-router-dom";
-
+import { HashRouter, Route, Switch } from "react-router-dom";
+//https://levelup.gitconnected.com/deploying-a-create-react-app-with-routing-to-github-pages-f386b6ce84c2
 function App() {
   return (
-    <div className="container-fluid">
-      <Switch>
-        <Route exact path="/" component={gamePlay} />
-        <Route component={winList} />
-        <Route component={loseList} />
-        <Route component={appHeader} />
-      </Switch>
-    </div>
+    <HashRouter basename="/">
+      <div className="container-fluid">
+        <Switch>
+          <Route exact path="/" component={gamePlay} />
+          <Route component={winList} />
+          <Route component={loseList} />
+          <Route component={appHeader} />
+        </Switch>
+      </div>
+    </HashRouter>
   );
 }
 

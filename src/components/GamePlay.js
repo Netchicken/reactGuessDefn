@@ -205,9 +205,9 @@ class GamePlay extends Component {
                 className="button btn btn-success btn-lg"
                 onClick={() => this.NewGame()}
               >
-                {"Play - " + word }
+                {"Play - " + word}
               </button>
-              {/* <h2 align="center">{word} </h2> */}
+
               <div className="row">
                 {answerPair.map((a, index) => (
                   <div className="col col-md-3 col-sm-6" key={index}>
@@ -215,6 +215,14 @@ class GamePlay extends Component {
                       <CardTitle className="conditions ">
                         {!answerClicked ? word : a.word}
                       </CardTitle>
+                      {answerClicked ? (
+                        <CardSubtitle className="cardSubtitle">
+                          {" "}
+                          {a.word === word ? "Correct!" : "Incorrect"}
+                        </CardSubtitle>
+                      ) : (
+                        " "
+                      )}
                       <CardText>{a.answer}</CardText>
 
                       <button
@@ -225,7 +233,6 @@ class GamePlay extends Component {
                       >
                         {!answerClicked ? "Choose Definition" : a.word}
                       </button>
-                      {/* <CardSubtitle> {a.word} </CardSubtitle> */}
                     </Card>
                   </div>
                 ))}
