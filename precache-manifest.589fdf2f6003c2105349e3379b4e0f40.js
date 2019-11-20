@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "906ec7e43453f025c9e0084806aebf7a",
+    "revision": "e6ccac16fb8d0b510c4d6013a27b1b73",
     "url": "/reactGuessDefn/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/reactGuessDefn/static/css/2.b0bb7f2c.chunk.css"
   },
   {
-    "revision": "21be9324b3890527e83b",
-    "url": "/reactGuessDefn/static/css/main.797078c5.chunk.css"
+    "revision": "6b668bb6b750ff895d15",
+    "url": "/reactGuessDefn/static/css/main.0f5380df.chunk.css"
   },
   {
     "revision": "01fddb68fc731d8d02b9",
     "url": "/reactGuessDefn/static/js/2.aee1e530.chunk.js"
   },
   {
-    "revision": "21be9324b3890527e83b",
+    "revision": "6b668bb6b750ff895d15",
     "url": "/reactGuessDefn/static/js/main.77a55033.chunk.js"
   },
   {
