@@ -4,7 +4,6 @@ import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import WinList from "./WinList";
 import LoseList from "./LoseList";
 
-
 //keep this for async ideas with state
 //https://stackoverflow.com/questions/58794712/how-to-i-make-setstate-run-synchronously-in-reactjs/58795004#58795004
 
@@ -180,7 +179,7 @@ class GamePlay extends Component {
 
               <div className="row">
                 {answerPair.map((a, index) => (
-                  <div className="col col-md-3 col-sm-6" key={index}>
+                  <div className="col col-sm-12 col-md-3 col-sm-6" key={index}>
                     <Card className="cardBody">
                       <CardTitle className="conditions ">
                         {!answerClicked ? word : a.word}
