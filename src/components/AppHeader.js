@@ -19,9 +19,9 @@ const AppHeader = props => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
-      <Navbar color="rgb(169, 185, 124)" light expand="md">
-        <NavbarBrand 
+    <div className="container-fluid  justify-content-md-center">
+      <Navbar color="rgb(169, 185, 124)" light expand="sm">
+        <NavbarBrand
           className="NavbarBrand"
           href="https://visioncollege.ac.nz/"
         >

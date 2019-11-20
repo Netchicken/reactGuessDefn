@@ -4,6 +4,7 @@ import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import WinList from "./WinList";
 import LoseList from "./LoseList";
 
+
 //keep this for async ideas with state
 //https://stackoverflow.com/questions/58794712/how-to-i-make-setstate-run-synchronously-in-reactjs/58795004#58795004
 
@@ -27,6 +28,7 @@ class GamePlay extends Component {
       rndAnswer: "",
       winList: [],
       loseList: []
+      //  isExpanded:false
     };
     this.WinLose = this.WinLose.bind(this);
   }
@@ -116,30 +118,6 @@ class GamePlay extends Component {
     );
   }
 
-  // shuffleAnswers = () => {
-  //   let temp = this.state.answers.slice();
-  //   for (let i = temp.length - 1; i > 0; i--) {
-  //     let j = Math.floor(Math.random() * (i + 1));
-  //     [temp[i], temp[j]] = [temp[j], temp[i]];
-  //   }
-  //  // console.log("shuffle  answers Temp  " + temp);
-  //   this.setState({ answers: temp });
-  // };
-
-  // shuffleAnswerPair = () => {
-  //   let temp = this.state.answerPair.slice();
-  //   for (let i = temp.length - 1; i > 0; i--) {
-  //     let j = Math.floor(Math.random() * (i + 1));
-  //     [temp[i], temp[j]] = [temp[j], temp[i]];
-  //   }
-
-  //   // let q = temp[0];
-  //   // console.log("shuffle  single Temp  " + q.word + " " + q.answer);
-  //   // console.log("shuffle  answerPair Temp  " + temp);
-  //   // console.log("answerPair Temp  " + temp[0]);
-  //   this.setState({ answerPair: temp });
-  // };
-
   WinLose(a) {
     this.setState({ answerClicked: true });
 
@@ -192,14 +170,6 @@ class GamePlay extends Component {
       return (
         <div className="container-fluid  justify-content-md-center">
           <div className="row  justify-content-md-center">
-            {/* <div className="col-md-auto">
-              <button
-                className="button btn btn-danger btn-lg"
-                onClick={() => this.NewGame()}
-              >
-                {!answerClicked ? "Play" : word}
-              </button>
-            </div> */}
             <div className="col-md-auto">
               <button
                 className="button btn btn-success btn-lg"

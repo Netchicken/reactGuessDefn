@@ -1,3 +1,19 @@
+/* Extra small devices (phones, 500px and down) */
+@media only screen and (max-width: 500px) {
+  .cardBody {
+    width: 100%;
+  }
+  .container-fluid {
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+@media only screen and (min-width: 501px) {
+  .cardBody {
+    width: 200px;
+  }
+}
+
 body {
   background-color: rgb(169, 185, 124);
 }
@@ -32,7 +48,7 @@ body {
   /* font-weight: bold; */
   font-size: medium;
   color: #1b1c1f;
-  width: 200px;
+  /* width: 200px; */
   padding: 5px;
   /* margin-right: 35px; */
   margin-top: 5px;
@@ -49,7 +65,7 @@ body {
 }
 
 .cardSubtitle {
-font-weight: bold;
+  font-weight: bold;
   font-size: medium;
   color: #04164b;
   text-align: center;
