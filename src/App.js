@@ -3,6 +3,7 @@ import "./App.css";
 import gamePlay from "./components/GamePlay";
 import winList from "./components/WinList";
 import loseList from "./components/LoseList";
+import qCards from "./components/QCards"
 import appHeader from "./components/AppHeader";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { HashRouter, Route, Switch } from "react-router-dom";
@@ -16,6 +17,7 @@ function App() {
           <Route component={winList} />
           <Route component={loseList} />
           <Route component={appHeader} />
+          <Route component={qCards} />
         </Switch>
       </div>
     </HashRouter>

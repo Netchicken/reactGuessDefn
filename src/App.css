@@ -20,7 +20,10 @@
 }
 
 body {
-  background-color: rgb(169, 185, 124);
+  /* background-color: rgb(169, 185, 124); */
+
+background: linear-gradient(rgb(150, 218, 170), #9ea0be);
+
 }
 /* .App {
    text-align: center; 
@@ -31,9 +34,9 @@ body {
 } */
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+   font-weight: bold;
+  font-size: medium;
+   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -156,6 +159,6 @@ body {
 
 .NavbarBrand {
   /* font-weight: bold; */
-  font-size: x-large;
-  color: rgb(217, 224, 221);
+  /* font-size: x-large;
+  color: rgb(217, 224, 221); */
 }

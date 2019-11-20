@@ -19,13 +19,13 @@ const AppHeader = props => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div className="container-fluid  justify-content-md-center">
+    <div className="container-fluid  justify-content-md-center App-header ">
       <Navbar color="rgb(169, 185, 124)" light expand="sm">
         <NavbarBrand
           className="NavbarBrand"
           href="https://visioncollege.ac.nz/"
         >
-          Vision College Home
+          Guess The Definition
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -35,11 +35,13 @@ const AppHeader = props => {
                 Information Technology Courses
               </NavLink>
             </NavItem>
-            {/* <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
-            </NavItem> */}
+            {
+              <NavItem>
+                <NavLink href="https://visioncollege.ac.nz/">
+                  Vision College Home
+                </NavLink>
+              </NavItem>
+            }
             {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options

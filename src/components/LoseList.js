@@ -5,7 +5,7 @@ import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 //https://www.robinwieruch.de/react-list-component
 
 const ListItem = ({ item }) => (
-  <li class="list-group-item list-group-item-primary">
+  <li className="list-group-item list-group-item-primary">
     <div>
       {item.id} {item}
     </div>
@@ -20,7 +20,7 @@ const LoseList = props => {
         <h5>You have lost ... {list.length} times</h5>
         {list.map((item, index) => {
           return (
-            <ul class="list-group list-group-flush">
+            <ul className="list-group list-group-flush">
               <ListItem key={item.id} item={item} />
             </ul>
           );

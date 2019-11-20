@@ -3,6 +3,7 @@ import { loadDictionary, shuffleAnswers } from "./FileProcessing";
 import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import WinList from "./WinList";
 import LoseList from "./LoseList";
+import QCards from "./QCards";
 
 //keep this for async ideas with state
 //https://stackoverflow.com/questions/58794712/how-to-i-make-setstate-run-synchronously-in-reactjs/58795004#58795004
@@ -173,12 +174,15 @@ class GamePlay extends Component {
               <button
                 className="button btn btn-success btn-lg"
                 onClick={() => this.NewGame()}
+                disabled={answerClicked}
               >
                 {"Play - " + word}
               </button>
 
               <div className="row">
-                {answerPair.map((a, index) => (
+                {/* <QCards answerPair={answerPair} answerClicked={answerClicked}
+                  word={word}/> */}
+                 {answerPair.map((a, index) => (
                   <div className="col col-12 col-sm-4 col-md-3 " key={index}>
                     <Card className="cardBody">
                       <CardTitle className="conditions ">
@@ -204,7 +208,7 @@ class GamePlay extends Component {
                       </button>
                     </Card>
                   </div>
-                ))}
+                ))} 
               </div>
               <div className="row">
                 <div className="col-md-auto">
