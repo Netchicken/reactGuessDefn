@@ -174,7 +174,7 @@ class GamePlay extends Component {
               <button
                 className="button btn btn-success btn-lg"
                 onClick={() => this.NewGame()}
-                disabled={answerClicked}
+                // disabled={answerClicked}
               >
                 {"Play - " + word}
               </button>
@@ -182,7 +182,7 @@ class GamePlay extends Component {
               <div className="row">
                 {/* <QCards answerPair={answerPair} answerClicked={answerClicked}
                   word={word}/> */}
-                 {answerPair.map((a, index) => (
+                {answerPair.map((a, index) => (
                   <div className="col col-12 col-sm-4 col-md-3 " key={index}>
                     <Card className="cardBody">
                       <CardTitle className="conditions ">
@@ -203,14 +203,15 @@ class GamePlay extends Component {
                         value={a}
                         key={index}
                         onClick={() => this.WinLose(a)}
+                        disabled={answerClicked}
                       >
-                        {!answerClicked ? "Choose Definition" : a.word}
+                        {!answerClicked ? "Choose Definition"  : a.word}
                       </button>
                     </Card>
                   </div>
-                ))} 
+                ))}
               </div>
-              <div className="row">
+              <div className="row  justify-content-md-center">
                 <div className="col-md-auto">
                   <WinList winList={this.state.winList} />
                 </div>
@@ -218,6 +219,7 @@ class GamePlay extends Component {
                   <LoseList loseList={this.state.loseList} />
                 </div>
               </div>
+              <p></p>
             </div>
           </div>
         </div>
