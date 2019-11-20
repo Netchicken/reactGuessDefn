@@ -1,5 +1,5 @@
 /* Extra small devices (phones, 500px and down) */
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .cardBody {
     width: 100%;
   }
@@ -8,9 +8,14 @@
     padding-left: 5px;
   }
 }
-@media only screen and (min-width: 501px) {
+@media only screen and (min-width: 601px) {
   .cardBody {
     width: 200px;
+  }
+
+  .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
   }
 }
 
