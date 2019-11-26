@@ -4,20 +4,23 @@ import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 
 //https://www.robinwieruch.de/react-list-component
 
-const ListItem = ({ item }) => (
-  <li className="list-group-item list-group-item-primary">
-    <div>
-      {item.id} {item}
-    </div>
-  </li>
-);
+const ListItem = ({ item }) =>
+  item ? (
+    <li className="list-group-item list-group-item-primary">
+      <div>
+        {item.id} {item}
+      </div>
+    </li>
+  ) : (
+    ""
+  );
 
 const LoseList = props => {
   const list = props.loseList;
   return (
     <div className="list-group">
       <Card className="cardBodyWinLose">
-        <h5>You have lost ... {list.length} times</h5>
+        <h5>You have lost ... {list.length } times</h5>
         {list.map((item, index) => {
           return (
             <ul className="list-group list-group-flush">

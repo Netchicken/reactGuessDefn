@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { loadDictionary, shuffleAnswers } from "./FileProcessing";
+import {
+  GenerateGameWords,
+  GenerateRND,
+  loadDictionary,
+  shuffleAnswers,
+  GenerateRNDLose
+} from "./FileProcessing";
 import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import WinList from "./WinList";
 import LoseList from "./LoseList";
@@ -27,19 +33,22 @@ class GamePlay extends Component {
       nextAnswer: "",
       rndAnswer: "",
       winList: [],
-      loseList: []
+     loseList: [],
+     // loseList: [
+      //   {
+      //     word: "",
+      //     answer: ""
+      //   }
+      // ]
+
       //  isExpanded:false
     };
     this.WinLose = this.WinLose.bind(this);
+    this.RetestLoseWords = this.RetestLoseWords.bind(this);
   }
-
-  //  "Word": "Aardvark",
-  //     "Definition": "n. Mammal with a tubular snout and a long tongue, feeding on termites. [afrikaans]"
 
   componentDidMount() {
     this.loadUpDictionary();
-    //this.DictionaryLength();
-    //this.RandomNumber();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -56,7 +65,7 @@ class GamePlay extends Component {
           answerClicked: false
         }),
         () => {
-          this.RandomNumber();
+          this.WordGeneration(); //run when completed above
         }
       );
       //  console.log(this.state.dictionary);
@@ -65,55 +74,25 @@ class GamePlay extends Component {
 
   NewGame() {
     this.setState({ answerClicked: false });
-    this.RandomNumber();
-    console.log("rnd " + this.state.rnd);
+    this.WordGeneration();
+    //  console.log("rnd " + this.state.rnd);
   }
 
-  RandomNumber() {
-    const min = 0 + 5; //5 is to stop out of bound errors
-    const max = 26731 - 5;
-    const rnd = Math.floor(Math.random() * (max - min + 1) + min);
-    const rnd2 = Math.floor(Math.random() * (max - min + 1) + min);
+  WordGeneration() {
+    const generatedArray = GenerateGameWords("", this.state.dictionary);
+    //console.log("word " + generatedArray[0].word);
+    //   console.log("defn " + generatedArray[0].answer);
 
-    const word = this.state.dictionary.Entries[rnd].Word;
-    const answer = this.state.dictionary.Entries[rnd].Definition;
-    const prevWord = this.state.dictionary.Entries[rnd - 1].Word;
-    const prevAnswer = this.state.dictionary.Entries[rnd - 1].Definition;
-    const nextWord = this.state.dictionary.Entries[rnd + 1].Word;
-    const nextAnswer = this.state.dictionary.Entries[rnd + 1].Definition;
-    const next2Word = this.state.dictionary.Entries[rnd + 2].Word;
-    const next2Answer = this.state.dictionary.Entries[rnd + 2].Definition;
-
-    const rndWord = this.state.dictionary.Entries[rnd2].Word;
-    const rndAnswer = this.state.dictionary.Entries[rnd2].Definition;
-
-    const AnswersArray = [answer, prevAnswer, nextAnswer, rndAnswer];
-
-    let q = { word: word, answer: answer };
-    let pq = { word: prevWord, answer: prevAnswer };
-    let nq = { word: nextWord, answer: nextAnswer };
-    let rq = { word: rndWord, answer: rndAnswer };
-    let n2q = { word: next2Word, answer: next2Answer }; //not used
-    const AnswersPairArray = [q, pq, nq, rq];
-
+    //need to get the word out before shuffling - we can't find it otherwise
+    const result = shuffleAnswers(generatedArray);
     this.setState(
       () => ({
-        rnd: rnd,
-        word: word,
-        answer: answer,
-        prevWord: this.state.dictionary.Entries[rnd - 1].Word,
-        prevAnswer: this.state.dictionary.Entries[rnd - 1].Definition,
-        nextWord: this.state.dictionary.Entries[rnd + 1].Word,
-        nextAnswer: this.state.dictionary.Entries[rnd + 1].Definition,
-        rndAnswer: this.state.dictionary.Entries[rnd2].Definition,
-        answers: AnswersArray,
-        answerPair: shuffleAnswers(AnswersPairArray)
+        word: generatedArray[0].word,
+        answer: generatedArray[0].answer,
+        answerPair: result //  shuffleAnswers(AnswersPairArray)
       }),
       () => {
-        //  console.log("answers[0] =  " + this.state.answers[0]);
-        //  this.shuffleAnswers();
-        //   this.setState({ answers: shuffleAnswers(this.state.answers) });
-        //  this.shuffleAnswerPair();
+        //run stuff after saving
       }
     );
   }
@@ -122,47 +101,64 @@ class GamePlay extends Component {
     this.setState({ answerClicked: true });
 
     if (a.answer === this.state.answer) {
-      // alert("Correct");
-
       this.setState(state => {
         const winList = [...state.winList, state.word]; //spread it, add in word
         return {
+          //this return means to return a new winlist to the state, not return from winlose
           winList //send back new list
         };
       });
 
-      console.log(" Win " + this.state.answer);
+ //     console.log(" Win " + this.state.answer);
     } else {
-      console.log("Lose " + this.state.answer);
+ //     console.log("Lose " + this.state.word + "   " + this.state.answer);
+      var loseEntry = { word: this.state.word, answer: this.state.answer };
 
       this.setState(state => {
-        const loseList = [...state.loseList, state.word]; //spread it, add in word
+        const loseList = [...state.loseList, this.state.word]; //spread it, add in word and answer
         return {
           loseList //send back new list
         };
       });
-
       //  alert("Wrong the answer to your definition is " + this.state.answer);
     }
+  }
 
-    //   this.state.winList.map(i => console.log("winList " + i.text));
+  RetestLoseWords() {
+    // this.setState({ answerClicked: false });
 
-    //this.NewGame();
+    const generatedArray = GenerateGameWords(
+      this.state.loseList,
+      this.state.dictionary
+    );
+    //need to get the word out before shuffling - we can't find it otherwise
+    const result = shuffleAnswers(generatedArray);
+
+    this.setState(
+      prevState => ({
+        loseList: prevState.loseList.filter(
+          word => word != generatedArray[0].word
+        ), //build a new list, from the prevstate with the word we are testing removed. Remove the word from the list
+        answerClicked: false,
+        word: generatedArray[0].word, //take the first word from the list
+        answer: generatedArray[0].answer, //take the first answer from the list
+        answerPair: result //  shuffleAnswers(AnswersPairArray)
+      }),
+      () => {
+        //run stuff after saving
+      }
+    );
+
+    //retested word is not at first position
+    // console.log("lose word " + this.state.word);
+    // console.log("lose defn " + this.state.answer);
+    // const { loseList } = this.state.loseList;
+
+    //  console.log(...loseList);
   }
 
   render() {
-    const {
-      isLoaded,
-      dictionary,
-      rnd,
-      word,
-      nextWord,
-      prevWord,
-      rndAnswer,
-      answers,
-      answerPair,
-      answerClicked
-    } = this.state; //pass across the state
+    const { isLoaded, word, answerPair, answerClicked } = this.state; //pass across the state
 
     if (!isLoaded) {
       return <div>Loading ....</div>;
@@ -179,9 +175,18 @@ class GamePlay extends Component {
                 {"Play - " + word}
               </button>
 
+              {/* <div className="row">
+                {
+                  <QCards
+                    answerPair={answerPair}
+                    answerClicked={this.state.answerClicked}
+                    word={word}
+                    winList={this.state.winList}
+                    loseList={this.state.loseList}
+                  />
+                }
+              </div> */}
               <div className="row">
-                {/* <QCards answerPair={answerPair} answerClicked={answerClicked}
-                  word={word}/> */}
                 {answerPair.map((a, index) => (
                   <div className="col col-12 col-sm-4 col-md-3 " key={index}>
                     <Card className="cardBody">
@@ -205,7 +210,7 @@ class GamePlay extends Component {
                         onClick={() => this.WinLose(a)}
                         disabled={answerClicked}
                       >
-                        {!answerClicked ? "Choose Definition"  : a.word}
+                        {!answerClicked ? "Choose Definition" : a.word}
                       </button>
                     </Card>
                   </div>
@@ -217,6 +222,12 @@ class GamePlay extends Component {
                 </div>
                 <div className="col-md-auto">
                   <LoseList loseList={this.state.loseList} />
+                  <button
+                    className="buttonSubmit btn btn-primary"
+                    onClick={() => this.RetestLoseWords()}
+                  >
+                    Retest
+                  </button>
                 </div>
               </div>
               <p></p>
