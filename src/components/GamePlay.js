@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import {
   GenerateGameWords,
-  GenerateRND,
-  loadDictionary,
-  shuffleAnswers,
-  GenerateRNDLose
-} from "./FileProcessing";
+    loadDictionary,
+  shuffleAnswers
+  } from "./FileProcessing";
 import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import WinList from "./WinList";
 import LoseList from "./LoseList";
-import QCards from "./QCards";
+//import QCards from "./QCards";
 
 //keep this for async ideas with state
 //https://stackoverflow.com/questions/58794712/how-to-i-make-setstate-run-synchronously-in-reactjs/58795004#58795004
@@ -89,7 +87,7 @@ class GamePlay extends Component {
       () => ({
         word: generatedArray[0].word,
         answer: generatedArray[0].answer,
-        answerPair: result //  shuffleAnswers(AnswersPairArray)
+        answerPair: result 
       }),
       () => {
         //run stuff after saving
@@ -112,7 +110,7 @@ class GamePlay extends Component {
  //     console.log(" Win " + this.state.answer);
     } else {
  //     console.log("Lose " + this.state.word + "   " + this.state.answer);
-      var loseEntry = { word: this.state.word, answer: this.state.answer };
+   //   var loseEntry = { word: this.state.word, answer: this.state.answer };
 
       this.setState(state => {
         const loseList = [...state.loseList, this.state.word]; //spread it, add in word and answer

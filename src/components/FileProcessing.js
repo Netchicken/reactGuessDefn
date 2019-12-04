@@ -36,14 +36,14 @@ export function GenerateGameWords(loseList, dictionary) {
   var rnd2 = 0;
   if (loseList.length !== 0) {
   //  rnd = GenerateRNDLose(loseList); //get a random number from the loselist
-    rnd = 0; // just get the first word from the list as its hard to get a random return
+    rnd = 0; // just get the first word from the list 
     
     var loseWord = loseList[0]; //get the first word from that list need to start with 1
     rnd = dictionary.Entries.findIndex(entry => entry.Word === loseWord); //match it with the word in the dict and generate the Index to get the rest of the words
 
 console.log("RND FOR  LOSELIST " + rnd)
 
-//version 1 Get the fist word on the list and test that. Remove it from the list. If person gets it wrong again it will be auto added into the end. V2 get a random word from the list
+//version 1 Get the first word on the list and test that. Remove it from the list. If person gets it wrong again it will be auto added into the end. V2 get a random word from the list
 
   } else {
     rnd = GenerateRND();
@@ -90,9 +90,6 @@ console.log("RND FOR  LOSELIST " + rnd)
   const AnswersPairArray = [q, pq, nq, rq];
   return AnswersPairArray;
 
-  //const result = shuffleAnswers(AnswersPairArray);
-
-//  return result;
 }
 
 

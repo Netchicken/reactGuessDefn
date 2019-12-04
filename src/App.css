@@ -1,7 +1,8 @@
-/* Extra small devices (phones, 500px and down) */
+/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .cardBody {
     width: 100%;
+    font-size: large;
   }
   .container-fluid {
     padding-right: 5px;
@@ -22,8 +23,7 @@
 body {
   /* background-color: rgb(169, 185, 124); */
 
-background: linear-gradient(rgb(150, 218, 170), #9ea0be);
-
+  background: linear-gradient(rgb(150, 218, 170), #9ea0be);
 }
 /* .App {
    text-align: center; 
@@ -34,9 +34,9 @@ background: linear-gradient(rgb(150, 218, 170), #9ea0be);
 } */
 
 .App-header {
-   font-weight: bold;
+  font-weight: bold;
   font-size: medium;
-   display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -53,8 +53,8 @@ background: linear-gradient(rgb(150, 218, 170), #9ea0be);
 }
 .cardBody {
   border-radius: 18px;
-  /* font-weight: bold; */
-  font-size: medium;
+  /* font-weight: bold; 
+  font-size: medium;*/
   color: #1b1c1f;
   /* width: 200px; */
   padding: 5px;
@@ -106,7 +106,7 @@ background: linear-gradient(rgb(150, 218, 170), #9ea0be);
   letter-spacing: 2.5px;
   font-weight: 500;
   /* color: #000; */
-   background-color:rgb(23, 139, 58);
+  background-color: rgb(23, 139, 58);
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(240, 15, 15, 0.1);
